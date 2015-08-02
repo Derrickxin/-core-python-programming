@@ -1,0 +1,22 @@
+#6-12a 
+def findchar(string,char):
+      if char in string:
+          for i, j in enumerate(string):
+              if string[i] ==char[0]:
+                  return i
+      else:
+         return -1
+#print findchar('abcdef','ef')
+#b
+def rfindchar(string,char):
+       str = string[::-1]
+       cha = char[::-1]
+       return -(findchar(str,cha) + 1)#第一个索引是从0开始的，最后一个是从-1开始的，所以要加1
+#print rfindchar('abcdebcdebfbcef','bc')
+#c
+def subchr(string,origchar,newchar):
+       if findchar(string,origchar) > -1:
+            return string.replace(origchar,newchar)
+       #牢记：字符串是不可变的！直接用replace方法后再返回string还是返回原来的string，而不是替换后的。
+print subchr('abcdefg','bc','kb')                  
+     
