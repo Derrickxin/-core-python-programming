@@ -1,8 +1,10 @@
 def int_to_IP():
+     #ip地址是由四个字节组成，每个字节8位，换成十六进制就是8位
+     
      ints = raw_input('input int:')
-     hexs = hex(int(ints))[2:]
+     hexs = hex(int(ints))[2:]#转换后把最后一个0x去掉，然后在前面添0
      while len(hexs) < 8:
-         henxs = '0' + hexs
+         hexs = '0' + hexs
      ip1 = int(hexs[0] + hexs[1],16)
      ip2 = int(hexs[2] + hexs[3],16)
      ip3 = int(hexs[4] + hexs[5],16)
