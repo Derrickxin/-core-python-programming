@@ -1,0 +1,40 @@
+‘’‘8-6 输入一个数，输出这个数分解质因数的结果，
+并用列表返回，可以有重复，如输入20，输出[2,2,5]‘’‘
+
+
+def isprime(n):#先定义素数
+    if n == 2:#2是个特例，必须单独讨论
+        return True
+    else:
+        for i in range(2, n):
+             if n % i == 0:
+                 return False
+             else:
+                 return True
+ 
+def getfactors(n):
+     lst = []
+     for i in range(2, n + 1):
+            if n % i ==0 :
+               lst.append(i)
+               break#变种的查找约数，只找第一个就行了
+     return lst
+     
+ 
+def isprimefactors(n):
+    lst = []
+    while True:
+        a = getfactors(n)
+        if n == 1: 
+            break
+        
+        else:
+            for i in a:#新手不知道怎么取出只有一个数的列表，只能用笨办法，求指教
+                 if isprime(i):
+                      lst.append(i)
+                      break
+                 
+        n /= i #最关键的一步，模拟分解质因数的过程
+    return lst
+    
+#print isprimefactors(45489)
