@@ -29,10 +29,8 @@ def isprimefactors(n):
             break
         
         else:
-            for i in a:#新手不知道怎么取出只有一个数的列表，只能用笨办法，求指教
-                 if isprime(i):
-                      lst.append(i)
-                      break
+            [ x for x in a if isprime(x) ]
+            break     
                  
         n /= i #最关键的一步，模拟分解质因数的过程
     return lst
