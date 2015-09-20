@@ -1,0 +1,27 @@
+import requests
+import re
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+total_page = ['http://www.jikexueyuan.com/course/?pageNum=%d'%i for i in range(1,7)]
+print total_page
+if __name__ == '__main__':
+    f = open('information.txt','a')
+    try:
+        for i in total_page:
+              source = requests.get(i).text
+              total_content = re.findall('<div class="lesson-infor" style="height: 88px;">(.*?)</li>', source, re.S)[0]
+              title = re.search('1">(.*?)</a></h2>',total_content, re.S).group(1)
+              content = re.search('<p style="height: 0px; opacity: 0; display: none;">(.*?)</p>',total_content, re.S).group(1)
+              timelevel = re.findall('<em>(.*?)</em>', total_content, re.S)
+              classtime = timelevel[0]
+              classlevel = timelevel[1]
+              learnnum = re.search('<em class="learn-number">(.*?)</em>', total_content, re.S).group(1)
+              #print learnnum
+              f.writelines('title:' + title + '\n')
+              f.writelines('content:' + content + '\n')
+              f.writelines('classtime:' + classtime + '\n')
+              f.writelines('classlevel:' + classlevel + '\n')
+              f.writelines('learnnum:' + learnnum + '\n')
+    finally:
+        f.close()
